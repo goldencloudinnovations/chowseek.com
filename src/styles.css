@@ -198,6 +198,97 @@ h2 { margin: 12px 0 14px; font-size: clamp(36px, 5vw, 54px); line-height: 1.03; 
 .legal-main li + li { margin-top: 8px; }
 .legal-callout { border: 1px solid rgba(47,113,80,.2); background: var(--green-soft); border-radius: 18px; padding: 18px 20px; color: #2e4d3a !important; }
 
+/* Account deletion action page */
+
+.account-action-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 28px;
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      #e3eee5,
+      transparent 45%
+    ),
+    var(--bg);
+}
+
+.account-action-card {
+  width: min(100%, 560px);
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, .88);
+  backdrop-filter: blur(18px);
+  border-radius: 30px;
+  padding: 42px;
+  box-shadow: var(--shadow);
+}
+
+.account-action-card .brand {
+  margin-bottom: 34px;
+}
+
+.account-action-icon {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 17px;
+  margin-bottom: 20px;
+  background: #f4e5e1;
+  color: #913f31;
+  font-size: 25px;
+  font-weight: 800;
+}
+
+.account-action-card h1 {
+  margin: 0 0 14px;
+  font-size: clamp(36px, 8vw, 52px);
+  line-height: 1.02;
+  letter-spacing: -.045em;
+}
+
+.account-action-copy {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+.account-action-warning {
+  margin-top: 22px;
+  padding: 16px 18px;
+  border: 1px solid rgba(145, 63, 49, .2);
+  border-radius: 17px;
+  background: #faf0ed;
+  color: #71362c;
+  line-height: 1.55;
+  font-size: 14px;
+}
+
+.account-action-button,
+.account-action-app {
+  width: 100%;
+  margin-top: 24px;
+}
+
+.account-action-button:disabled {
+  opacity: .55;
+  cursor: wait;
+  transform: none;
+}
+
+.account-action-help {
+  margin: 24px 0 0;
+  color: #77827a;
+  font-size: 13px;
+}
+
+.account-action-help a {
+  color: var(--green-dark);
+  font-weight: 690;
+}
+
 @media (max-width: 900px) {
   .nav-links { display: none; }
   .menu-button { display: grid; place-items: center; }
@@ -230,6 +321,7 @@ h2 { margin: 12px 0 14px; font-size: clamp(36px, 5vw, 54px); line-height: 1.03; 
   .cta-card { padding: 40px 27px; border-radius: 28px; }
   .footer-row { align-items: flex-start; flex-direction: column; }
   .app-card { padding: 34px 22px; }
+  .account-action-card { padding: 34px 22px; }
   .legal-main { padding-top: 52px; }
 }
 
