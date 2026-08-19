@@ -12,7 +12,7 @@ await mkdir(resolve(dist, 'assets'), { recursive: true });
 for (const file of ['index.html']) {
   await copyFile(resolve(root, file), resolve(dist, file));
 }
-for (const dir of ['app', 'privacy', 'terms', 'account-deletion', 'public']) {
+for (const dir of ['app', 'privacy', 'terms', 'cookie', 'account-deletion', 'public']) {
   const source = resolve(root, dir);
   if (!existsSync(source)) continue;
   if (dir === 'public') {

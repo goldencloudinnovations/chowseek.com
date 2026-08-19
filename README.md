@@ -5,8 +5,10 @@ A responsive TypeScript marketing site for **https://chowseek.com**. It includes
 - One-page mobile SaaS landing page
 - `/app/` device detection and App Store / Google Play redirect
 - Desktop `/app/` fallback with both store buttons
-- `/privacy/` Privacy Policy starter page
-- `/terms/` Terms & Conditions starter page
+- `/privacy/` full Privacy Policy (Last Updated August 1, 2026)
+- `/terms/` full Terms & Conditions (Effective August 1, 2026)
+- `/cookie/` full Cookie Policy (Effective August 1, 2026)
+- Site-wide cookie consent banner, category preferences, Global Privacy Control handling, and California sale/sharing opt-out controls
 - Screenshot placeholders that automatically switch to your real app screenshots
 - GitHub Pages deployment workflow
 - `CNAME` preconfigured for `chowseek.com`
@@ -135,26 +137,61 @@ This project is multi-page rather than relying on SPA history routing. The build
 - `/app/index.html` → `chowseek.com/app`
 - `/privacy/index.html` → `chowseek.com/privacy`
 - `/terms/index.html` → `chowseek.com/terms`
+- `/cookie/index.html` → `chowseek.com/cookie`
 
 That makes direct visits work cleanly on GitHub Pages without a client-side router/SPA 404 hack.
 
-## 6. Privacy Policy / Terms review
+## 6. Legal policies and cookie consent
 
-The legal pages are intentionally marked as **starter language**. They were drafted around functionality visible in the supplied Chowseek source (account auth, location-based recommendations, saved data, subscriptions, device integrity/security signals, and third-party place/map/payment services).
+The repository now contains the supplied final legal policies as native HTML pages:
 
-Before public launch, have counsel review at least:
+- `/privacy/` — Chowseek Privacy Policy, last updated August 1, 2026
+- `/terms/` — Chowseek Terms and Conditions, effective August 1, 2026
+- `/cookie/` — Chowseek Cookie Policy, effective August 1, 2026
 
-- Exact legal entity/company name
-- Business/contact address if required
-- Governing law and dispute terms
-- Subscription, cancellation, refund, and trial rules
-- Final third-party vendors and analytics
-- Data retention/deletion behavior
-- Children/minimum-age handling
-- California/US state privacy disclosures, GDPR/UK GDPR, or other regional terms if applicable
-- Apple App Privacy and Google Play Data Safety disclosures for consistency with the policy
+The pages preserve the source policy wording and structure, including subsection emphasis, the Privacy Policy California information table, the italicized Cookie Policy home-page consent statement, and links to referenced policies, providers, browser cookie instructions, and contact email addresses.
 
-The current contact email is `support@chowseek.com`. Change it in the HTML/legal text if that mailbox is not the one you want to publish.
+### Cookie controls
+
+`src/cookies.ts` provides the site-wide consent interface. On a first visit it shows:
+
+- **Accept All**
+- **Reject Non-Essential**
+- **Manage Preferences**
+
+The preference dialog exposes **Necessary**, **Functional**, **Analytics**, and **Advertising** categories. Necessary is always enabled. Consent is stored in local storage under `chowseek.cookieConsent.v1`.
+
+The script also:
+
+- honors a browser Global Privacy Control (`GPC`) signal by keeping advertising/sale-sharing opted out;
+- provides persistent **Cookie Settings** controls in site footers;
+- provides a **Do Not Sell or Share My Personal Information** control;
+- dispatches a `chowseek:consentchange` browser event when consent changes; and
+- exposes `window.ChowseekConsent` with `getPreferences()`, `isGranted(category)`, and `openPreferences()`.
+
+### Gate future non-essential scripts
+
+There are no Google Analytics, Microsoft Clarity, advertising pixels, or other non-essential tracking scripts enabled in this repository today. If you add one, do not insert it as an immediately executable script. Mark it as consent-gated instead:
+
+```html
+<script
+  type="text/plain"
+  data-consent-category="analytics"
+  data-src="https://example.com/analytics.js"
+></script>
+```
+
+Supported categories are `functional`, `analytics`, and `advertising` (`necessary` is also recognized for completeness). `cookies.ts` activates a gated script only after the required category has been granted. A consent-gated iframe can use `data-consent-category` together with `data-consent-src`.
+
+If a provider has its own consent/revocation API, wire that API to the `chowseek:consentchange` event as well, because a JavaScript file that has already executed cannot be unloaded from a page.
+
+### Registration and subscription checkout
+
+The current marketing site does not contain a website account-registration flow or a website subscription checkout, so no fake acceptance/checkout UI has been added. If either flow is added later, keep it consistent with the published Terms: show Terms & Conditions and Privacy Policy links at registration, and collect the separate affirmative acknowledgment required for automatically renewing subscriptions in addition to general Terms acceptance.
+
+### Source-document structure note
+
+The supplied Terms PDF has a Table of Contents with 20 entries while the body is organized into 16 Roman-numeral sections, with Governing Law, Assignment, Severability, and Contact Us under Section XVI, Miscellaneous. The HTML preserves the supplied Table of Contents wording and the supplied body structure rather than silently rewriting the legal document. The Table of Contents links point to the closest corresponding body anchors.
 
 ## 7. Main files
 
@@ -163,9 +200,11 @@ index.html                     Main landing page
 app/index.html                 Smart store redirect / desktop chooser
 privacy/index.html             Privacy Policy
 terms/index.html               Terms & Conditions
+cookie/index.html              Cookie Policy
 src/config.ts                  Store URLs + screenshot paths
 src/main.ts                    Landing page behavior
 src/app.ts                     iOS/Android detection + redirects
+src/cookies.ts                 Cookie consent, GPC, preference controls, gated-resource activation
 src/styles.css                 Full responsive design
 public/screenshots/            Drop your app screenshots here
 public/CNAME                   chowseek.com custom domain
