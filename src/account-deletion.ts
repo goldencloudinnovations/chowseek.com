@@ -236,10 +236,19 @@ function showInvalid(): void {
 
   if (warning) {
     warning.hidden = true;
+    warning.textContent = '';
   }
 
   if (submit) {
     submit.hidden = true;
+    submit.disabled = false;
+  }
+
+  if (appLink) {
+    appLink.href = '/';
+    appLink.textContent =
+      'Return to Chowseek';
+    appLink.hidden = false;
   }
 }
 
