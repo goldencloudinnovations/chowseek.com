@@ -214,3 +214,23 @@ public/CNAME                   chowseek.com custom domain
 ## 8. Optional copy edits
 
 The landing-page copy is based on the current app behavior in the archive: natural-language food search, map-based recommendations, saved searches/places/notes/reminders, and richer recommendation signals. Update any marketing claims before launch if production behavior changes.
+
+## 9. Legal policy version history + app update checks
+
+The website exposes machine-readable Terms & Conditions and Privacy Policy version information for the app.
+
+Current endpoints:
+
+```text
+https://chowseek.com/legal/versions.json
+https://chowseek.com/terms/versions.json
+https://chowseek.com/privacy/versions.json
+```
+
+Each policy currently has **one real version entry**. New entries should only be added when a new policy version is actually published.
+
+The combined `/legal/versions.json` endpoint is intended for the app to check on launch. The app can compare `notification.id` with the last ID it has stored locally and show an update notice when that value changes.
+
+For the complete update procedure, including exactly which files to copy, which JSON fields to change, how to choose timestamps, app behavior, validation, and deployment checks, see:
+
+**[`LEGAL_POLICY_UPDATES_README.md`](./LEGAL_POLICY_UPDATES_README.md)**

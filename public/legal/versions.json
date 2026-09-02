@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "lastUpdatedAt": "2026-08-19T07:39:04Z",
+  "notification": {
+    "id": "legal-2026-08-19-1",
+    "updatedAt": "2026-08-19T07:39:04Z",
+    "title": "Legal policies updated",
+    "body": "Our Terms & Conditions and Privacy Policy have been updated. Tap to review the latest versions.",
+    "policies": ["terms", "privacy"]
+  },
+  "policies": {
+    "terms": {
+      "name": "Terms & Conditions",
+      "currentRevision": 1,
+      "lastUpdatedAt": "2026-08-19T07:39:04Z",
+      "effectiveAt": "2026-08-01T07:00:00Z",
+      "currentUrl": "https://chowseek.com/terms/",
+      "historyUrl": "https://chowseek.com/terms/versions.json",
+      "versions": [
+        {
+          "revision": 1,
+          "version": "2026-08-19",
+          "publishedAt": "2026-08-19T07:39:04Z",
+          "effectiveAt": "2026-08-01T07:00:00Z",
+          "url": "https://chowseek.com/terms/versions/2026-08-19/",
+          "isCurrent": true
+        }
+      ]
+    },
+    "privacy": {
+      "name": "Privacy Policy",
+      "currentRevision": 1,
+      "lastUpdatedAt": "2026-08-19T07:39:04Z",
+      "effectiveAt": "2026-08-01T07:00:00Z",
+      "currentUrl": "https://chowseek.com/privacy/",
+      "historyUrl": "https://chowseek.com/privacy/versions.json",
+      "versions": [
+        {
+          "revision": 1,
+          "version": "2026-08-19",
+          "publishedAt": "2026-08-19T07:39:04Z",
+          "effectiveAt": "2026-08-01T07:00:00Z",
+          "url": "https://chowseek.com/privacy/versions/2026-08-19/",
+          "isCurrent": true
+        }
+      ]
+    }
+  }
+}
